@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Text, View, StyleSheet, SafeAreaView } from "react-native";
-import * as Location from "expo-location";
-import Constants from "expo-constants";
-import { firestore, firestoreRef, fireRealTime } from "./firebase/app";
-import MainView from "./src/scenes/map";
-import { Provider } from "react-redux";
-import store from "./redux/store";
+import React, { Component } from 'react';
+import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
+import * as Location from 'expo-location';
+import Constants from 'expo-constants';
+import { firestore, firestoreRef, fireRealTime } from './firebase/app';
+import MapScreen from './src/views/map';
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
 
 export default class App extends Component {
 	state = {
@@ -30,20 +30,20 @@ export default class App extends Component {
 	}
 
 	_getData = () => {
-		let ref = fireRealTime.ref("/");
-		ref.on("value", (snapshot) => {
+		let ref = fireRealTime.ref('/');
+		ref.on('value', (snapshot) => {
 			const state = snapshot.val();
 			this.setState(state);
 		});
 	};
 	writeUserData = () => {
-		fireRealTime.ref("/").set(this.state);
-		console.log("DATA SAVED");
+		fireRealTime.ref('/').set(this.state);
+		console.log('DATA SAVED');
 	};
 
 	_writeData = () => {
 		firestore
-			.collection("users")
+			.collection('users')
 			.doc(this.state.deviceID)
 			.set(
 				{
@@ -57,8 +57,8 @@ export default class App extends Component {
 
 	_getLocationAsync = async () => {
 		let { status } = await Location.requestPermissionsAsync();
-		if (status !== "granted") {
-			setErrorMsg("Permission to access location was denied");
+		if (status !== 'granted') {
+			setErrorMsg('Permission to access location was denied');
 		}
 
 		let location = await Location.getCurrentPositionAsync({});
@@ -74,9 +74,9 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<SafeAreaView>
+			<SafeAreaView style={styles.container}>
 				<Provider store={store}>
-					<MainView></MainView>
+					<MapScreen style={styles.map}></MapScreen>
 				</Provider>
 			</SafeAreaView>
 		);
@@ -86,16 +86,16 @@ export default class App extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: "#ecf0f1",
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#ecf0f1',
 	},
 	paragraph: {
 		margin: 24,
 		fontSize: 18,
-		fontWeight: "bold",
-		textAlign: "center",
-		color: "#34495e",
+		fontWeight: 'bold',
+		textAlign: 'center',
+		color: '#34495e',
 	},
 	map: {
 		flex: 1,

@@ -1,5 +1,6 @@
-import React from "react";
-import { Text, View, StyleSheet, SafeAreaView } from "react-native";
+import React from 'react';
+import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
+import MapView from 'react-native-maps';
 
 // This is our ProfileTemplate component definition, has nothing more than the skeleton
 const MapTemplate = (props) => (
@@ -13,7 +14,8 @@ const MapTemplate = (props) => (
 
 const styles = StyleSheet.create({
 	map: {
-		flex: 1,
+		width: '100%',
+		height: '100%',
 	},
 });
 

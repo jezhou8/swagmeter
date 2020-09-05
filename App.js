@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import * as Location from "expo-location";
-import MapView from "react-native-maps";
 import Constants from "expo-constants";
 import { firestore, firestoreRef, fireRealTime } from "./firebase/app";
+import MainView from "./src/scenes/map";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 export default class App extends Component {
 	state = {
@@ -72,12 +74,11 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<MapView
-				style={styles.map}
-				region={this.state.mapRegion}
-				onRegionChange={this._handleMapRegionChange}
-				showsUserLocation
-			></MapView>
+			<SafeAreaView>
+				<Provider store={store}>
+					<MainView></MainView>
+				</Provider>
+			</SafeAreaView>
 		);
 	}
 }

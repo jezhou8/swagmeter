@@ -1,2 +1,5 @@
-export const LATITUDE_DELTA = 0.0005;
-export const LONGITUDE_DELTA = 0.0005;
+import * as _colors from './colors';
+import * as variables from './variables';
+
+export const colors = _colors;
+export const VARS = variables;

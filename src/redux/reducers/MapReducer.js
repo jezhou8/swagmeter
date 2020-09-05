@@ -1,11 +1,11 @@
-import { LATITUDE_DELTA, LONGITUDE_DELTA } from '../../constants';
+import { VARS } from '../../constants';
 
 const initialState = {
 	region: {
 		latitude: 40.104585872069094,
 		longitude: -88.23382370182148,
-		latitudeDelta: LATITUDE_DELTA,
-		longitudeDelta: LONGITUDE_DELTA,
+		latitudeDelta: VARS.LATITUDE_DELTA,
+		longitudeDelta: VARS.LONGITUDE_DELTA,
 	},
 };
 
